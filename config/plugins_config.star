@@ -31,13 +31,13 @@ def plugins_try_config(platform_args):
     """Detailed builder configures for different platforms.
     
     Args:
-        platform_args (dict) - platform arguments.
-        For example: 
-        {
-            "windows": {
-                "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
+        platform_args: The platform arguments passed to luci builders.
+            For example: 
+            {
+                "windows": {
+                    "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
+                }
             }
-        }
     """
     # Defines a list view for try builders
     list_view_name = "plugins-try"
