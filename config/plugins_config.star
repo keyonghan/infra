@@ -30,7 +30,7 @@ def plugins_define_recipes():
 # Detailed builder configures for different platforms.
 #
 # [platform_args] has map structure, with platforms as keys.
-# Example:  
+# Example:
 # {
 #    "windows": {
 #        "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
@@ -50,7 +50,7 @@ def plugins_try_config(platform_args):
         recipe = "plugins/plugins",
         list_view_name = list_view_name,
         repo = repos.PLUGINS,
-        **platform_args["windows"],
+        **platform_args["windows"]
     )
 
 plugins_config = struct(setup = _setup)
