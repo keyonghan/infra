@@ -31,7 +31,7 @@ def plugins_try_config(platform_args):
     """Detailed builder configures for different platforms.
     
     Args:
-        platform_args: The platform arguments passed to luci builders.
+        platform_args (dict): The platform arguments passed to luci builders.
             For example: 
             {
                 "windows": {
