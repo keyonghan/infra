@@ -9,8 +9,8 @@ Configurations for the plugins repository.
 load("//lib/common.star", "common")
 load("//lib/repos.star", "repos")
 
-# Set default configurations for builders, and setup recipes.
 def _setup():
+    """Set default configurations for builders, and setup recipes."""
     platform_args = {
         "windows": {
             "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
@@ -19,24 +19,26 @@ def _setup():
     plugins_define_recipes()
     plugins_try_config(platform_args)
 
-# Defines recipes for plugins repo.
 def plugins_define_recipes():
+    """Defines recipes for plugins repo."""
     luci.recipe(
         name = "plugins/plugins",
         cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
         cipd_version = "refs/heads/master",
     )
 
-# Detailed builder configures for different platforms.
-#
-# [platform_args] has map structure, with platforms as keys.
-# Example:
-# {
-#    "windows": {
-#        "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
-#    }
-# }
 def plugins_try_config(platform_args):
+    """Detailed builder configures for different platforms.
+    
+    Args:
+        platform_args (dict) - platform arguments.
+        For example: 
+        {
+            "windows": {
+                "caches": [swarming.cache(name = "pub_cache", path = ".pub-cache")],
+            }
+        }
+    """
     # Defines a list view for try builders
     list_view_name = "plugins-try"
     luci.list_view(
