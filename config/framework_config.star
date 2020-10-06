@@ -278,14 +278,14 @@ def framework_prod_config(branch, version, testing_ref, release_ref):
     )
 
     common.linux_prod_builder(
-        name = "Linux%s deploy_gallery|dg" % ("" if branch == "master" else " " + branch),
+        name = "Linux%s build_gallery|dg" % ("" if branch == "master" else " " + branch),
         recipe = new_recipe_name,
         console_view_name = console_view_name,
         triggered_by = [trigger_name],
         triggering_policy = triggering_policy,
         properties = {
-            "validation": "deploy_gallery",
-            "validation_name": "Deploy gallery",
+            "validation": "build_gallery",
+            "validation_name": "Build gallery",
             "dependencies": [{"dependency": "android_sdk"}],
         },
         caches = [
@@ -451,14 +451,14 @@ def framework_prod_config(branch, version, testing_ref, release_ref):
     )
 
     common.mac_prod_builder(
-        name = "Mac%s deploy_gallery|dg_test" % ("" if branch == "master" else " " + branch),
+        name = "Mac%s build_gallery|dg_test" % ("" if branch == "master" else " " + branch),
         recipe = new_recipe_name,
         console_view_name = console_view_name,
         triggered_by = [trigger_name],
         triggering_policy = triggering_policy,
         properties = {
-            "validation": "deploy_gallery",
-            "validation_name": "Deploy gallery",
+            "validation": "build_gallery",
+            "validation_name": "Build gallery",
             "dependencies": [{"dependency": "xcode"}, {"dependency": "gems"}],
         },
         caches = [
@@ -644,13 +644,13 @@ def framework_try_config():
         ],
     )
     common.linux_try_builder(
-        name = "Linux deploy_gallery|dg",
+        name = "Linux build_gallery|dg",
         recipe = "flutter/flutter",
         repo = repos.FLUTTER,
         list_view_name = list_view_name,
         properties = {
-            "validation": "deploy_gallery",
-            "validation_name": "Deploy gallery",
+            "validation": "build_gallery",
+            "validation_name": "Build gallery",
             "dependencies": [{"dependency": "android_sdk"}],
         },
         caches = [
@@ -739,13 +739,13 @@ def framework_try_config():
     )
 
     common.mac_try_builder(
-        name = "Mac deploy_gallery|dg",
+        name = "Mac build_gallery|dg",
         recipe = "flutter/flutter",
         repo = repos.FLUTTER,
         list_view_name = list_view_name,
         properties = {
-            "validation": "deploy_gallery",
-            "validation_name": "Deploy gallery",
+            "validation": "build_gallery",
+            "validation_name": "Build gallery",
             "dependencies": [{"dependency": "xcode"}, {"dependency": "gems"}],
         },
         caches = [
