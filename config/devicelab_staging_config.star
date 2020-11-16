@@ -129,7 +129,7 @@ def devicelab_staging_prod_config():
             dimensions = {"device_os": "14.1"},
             execution_timeout = timeout.SHORT,
         )
-    
+
     # Linux prod builders.
     linux_tasks = [
         "complex_layout_android__compile",
@@ -190,9 +190,10 @@ def devicelab_staging_prod_config():
                 "dependencies": [
                     {
                         "dependency": "android_sdk",
-                    }, {
-                        "dependency": "chrome_and_driver"
-                    }
+                    },
+                    {
+                        "dependency": "chrome_and_driver",
+                    },
                 ],
                 "task_name": task,
             },
