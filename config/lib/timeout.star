@@ -9,4 +9,5 @@ timeout = struct(
     MEDIUM = 60 * time.minute,
     LONG = 90 * time.minute,
     XL = 180 * time.minute,
+    LONG_EXPIRATION = 12 * 60 * time.minute,
 )
