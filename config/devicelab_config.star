@@ -299,6 +299,8 @@ def devicelab_prod_config(branch, version, ref):
             pool = "luci.flutter.prod",
             os = "Android",
             dimensions = {"device_os": "N"},
+            # TODO(keyonghan): adjust the timeout when devicelab linux tasks are stable:
+            # https://github.com/flutter/flutter/issues/72383.
             expiration_timeout = timeout.LONG_EXPIRATION,
         )
 
