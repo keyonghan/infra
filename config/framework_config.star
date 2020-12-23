@@ -803,7 +803,7 @@ def framework_try_config():
                 "sdk_version": NEW_XCODE_VERSION,
             },
         },
-        caches = MAC_DEFAULT_CACHES,
+        caches = MAC_NEWXCODE_CACHES,
     )
     common.mac_try_builder(
         name = "Mac framework_tests|frwk_tests",
