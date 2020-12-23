@@ -39,7 +39,13 @@ def device_doctor_recipes():
     )
 
 def cocoon_try_config(platform_args):
-    # Defines a list view for try builders
+    """Creates try cocoon configurations.
+
+    Args:
+      platform_args(dict): Dictionary with the default properties with the platform
+        as key.
+    """
+
     list_view_name = "cocoon-try"
     luci.list_view(
         name = list_view_name,
