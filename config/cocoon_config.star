@@ -18,25 +18,18 @@ def _setup():
             "caches": [swarming.cache(name = "dart_pub_cache", path = ".pub-cache")],
         },
     }
-    cocoon_define_recipes()
-    device_doctor_recipes()
+    cocoon_recipes()
     cocoon_try_config(platform_args)
 
-def cocoon_define_recipes():
-    # Defines recipes
-    luci.recipe(
-        name = "cocoon",
-        cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
-        cipd_version = "refs/heads/master",
-    )
+recipe_names = ["cocoon/cocoon", "cocoon/device_doctor"]
 
-def device_doctor_recipes():
-    # Defines recipes
-    luci.recipe(
-        name = "cocoon/device_doctor",
-        cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
-        cipd_version = "refs/heads/master",
-    )
+def cocoon_recipes():
+    for recipe in recipe_names:
+        luci.recipe(
+            name = recipe,
+            cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
+            cipd_version = "refs/heads/master",
+        )
 
 def cocoon_try_config(platform_args):
     """Creates try cocoon configurations.
@@ -55,7 +48,7 @@ def cocoon_try_config(platform_args):
     # Defines cocoon linux try builders
     common.linux_try_builder(
         name = "Cocoon|cocoon",
-        recipe = "cocoon",
+        recipe = "cocoon/cocoon",
         list_view_name = list_view_name,
         repo = repos.COCOON,
         add_cq = True,
