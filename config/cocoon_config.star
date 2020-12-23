@@ -19,12 +19,21 @@ def _setup():
         },
     }
     cocoon_define_recipes()
+    device_doctor_recipes()
     cocoon_try_config(platform_args)
 
 def cocoon_define_recipes():
     # Defines recipes
     luci.recipe(
         name = "cocoon",
+        cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
+        cipd_version = "refs/heads/master",
+    )
+
+def device_doctor_recipes():
+    # Defines recipes
+    luci.recipe(
+        name = "cocoon/device_doctor",
         cipd_package = "flutter/recipe_bundles/flutter.googlesource.com/recipes",
         cipd_version = "refs/heads/master",
     )
@@ -37,7 +46,7 @@ def cocoon_try_config(platform_args):
         title = "Cocoon try builders",
     )
 
-    # Defines cocoon try builders
+    # Defines cocoon linux try builders
     common.linux_try_builder(
         name = "Cocoon|cocoon",
         recipe = "cocoon",
@@ -45,6 +54,31 @@ def cocoon_try_config(platform_args):
         repo = repos.COCOON,
         add_cq = True,
         **platform_args["linux"]
+    )
+    common.linux_try_builder(
+        name = "Linux device_doctor|device_doctor",
+        recipe = "cocoon/device_doctor",
+        list_view_name = list_view_name,
+        repo = repos.COCOON,
+        add_cq = True,
+    )
+
+    # Defines cocoon mac try builders
+    common.mac_try_builder(
+        name = "Mac device_doctor|device_doctor",
+        recipe = "cocoon/device_doctor",
+        list_view_name = list_view_name,
+        repo = repos.COCOON,
+        add_cq = True,
+    )
+
+    # Defines cocoon windows try builders
+    common.windows_try_builder(
+        name = "Windows device_doctor|device_doctor",
+        recipe = "cocoon/device_doctor",
+        list_view_name = list_view_name,
+        repo = repos.COCOON,
+        add_cq = True,
     )
 
 cocoon_config = struct(setup = _setup)
