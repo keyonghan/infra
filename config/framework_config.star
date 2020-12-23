@@ -800,7 +800,7 @@ def framework_try_config():
                 "sdk_version": XCODE_VERSION,
             },
             "$flutter/osx_sdk": {
-                "sdk_version": XCODE_VERSION,
+                "sdk_version": NEW_XCODE_VERSION,
             },
         },
         caches = MAC_DEFAULT_CACHES,
