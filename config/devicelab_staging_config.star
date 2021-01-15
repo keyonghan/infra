@@ -210,7 +210,7 @@ def devicelab_staging_prod_config():
     ]
 
     for task in mac_android_tasks:
-        common.mac_android_prod_builder(
+        common.mac_prod_builder(
             name = "Mac_android %s|%s" % (task, short_name(task)),
             recipe = drone_recipe_name,
             console_view_name = console_view_name,
@@ -232,6 +232,7 @@ def devicelab_staging_prod_config():
             },
             pool = "luci.flutter.staging",
             os = "Mac",
+            category = "Mac_android",
             dimensions = {"device_os": "N"},
             expiration_timeout = timeout.LONG_EXPIRATION,
             execution_timeout = timeout.SHORT,
