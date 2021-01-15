@@ -362,6 +362,14 @@ def _mac_builder(properties = {}, caches = None, category = "Mac", **kwargs):
         **kwargs
     )
 
+def _mac_android_builder(properties = {}, caches = None, category = "Mac_android", **kwargs):
+    return _common_builder(
+        os = "Mac",
+        properties = properties,
+        category = category,
+        **kwargs
+    )
+
 def _linux_builder(
         properties = {},
         caches = None,
@@ -390,6 +398,7 @@ def _windows_builder(
 
 _linux_try_builder, _linux_prod_builder = _linux_builder()
 _mac_try_builder, _mac_prod_builder = _mac_builder()
+_mac_android_try_builder, _mac_android_prod_builder = _mac_android_builder()
 _windows_try_builder, _windows_prod_builder = _windows_builder()
 
 common = struct(
@@ -404,6 +413,8 @@ common = struct(
     linux_prod_builder = _linux_prod_builder,
     mac_try_builder = _mac_try_builder,
     mac_prod_builder = _mac_prod_builder,
+    mac_android_try_builder = _mac_android_try_builder,
+    mac_android_prod_builder = _mac_android_prod_builder,
     windows_try_builder = _windows_try_builder,
     windows_prod_builder = _windows_prod_builder,
     try_builder = _try_builder,
