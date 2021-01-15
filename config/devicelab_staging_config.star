@@ -28,6 +28,20 @@ LINUX_DEFAULT_CACHES = [
     swarming.cache(name = "flutter_sdk", path = "flutter sdk"),
 ]
 
+# Default caches for Mac android builders
+MAC_ANDROID_DEFAULT_CACHES = [
+    # Android SDK
+    swarming.cache(name = "android_sdk", path = "android"),
+    # Chrome
+    swarming.cache(name = "chrome_and_driver", path = "chrome"),
+    # OpenJDK
+    swarming.cache(name = "openjdk", path = "java"),
+    # PubCache
+    swarming.cache(name = "pub_cache", path = ".pub-cache"),
+    # Flutter SDK code
+    swarming.cache(name = "flutter_sdk", path = "flutter sdk"),
+]
+
 # Default caches for Mac builders
 MAC_DEFAULT_CACHES = [
     # Pub cache
@@ -197,7 +211,7 @@ def devicelab_staging_prod_config():
 
     for task in mac_android_tasks:
         common.mac_android_prod_builder(
-            name = "Mac_staging %s|%s" % (task, short_name(task)),
+            name = "Mac_android %s|%s" % (task, short_name(task)),
             recipe = drone_recipe_name,
             console_view_name = console_view_name,
             triggered_by = [trigger_name],
@@ -220,7 +234,8 @@ def devicelab_staging_prod_config():
             os = "Mac",
             dimensions = {"device_os": "N"},
             expiration_timeout = timeout.LONG_EXPIRATION,
-            caches = LINUX_DEFAULT_CACHES,
+            execution_timeout = timeout.SHORT,
+            caches = MAC_ANDROID_DEFAULT_CACHES,
         )
 
     # Linux prod builders.
